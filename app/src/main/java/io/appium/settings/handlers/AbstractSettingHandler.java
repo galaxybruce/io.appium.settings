@@ -25,7 +25,7 @@ public abstract class AbstractSettingHandler {
     protected Context mContext;
     private String[] permissions;
 
-    AbstractSettingHandler(Context context, String... permissions) {
+    public AbstractSettingHandler(Context context, String... permissions) {
         this.mContext = context;
         this.permissions = permissions;
     }

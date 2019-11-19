@@ -25,6 +25,11 @@
 
     <uses-feature android:name="android.hardware.wifi" />
 
+    <!-- add by bruce.zhang start -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- add by bruce.zhang end -->
+
+
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -111,5 +116,12 @@
         <receiver android:name=".receivers.LocationInfoReceiver"
             android:exported="true"
             tools:ignore="ExportedReceiver" />
+
+        <!-- add by bruce.zhang start -->
+        <receiver android:name=".custom.receivers.VibrateSettingReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver" />
+        <!-- add by bruce.zhang end -->
+
     </application>
 </manifest>
