@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.appium.settings.custom.receivers.VibrateSettingReceiver;
+import io.appium.settings.custom.receivers.WifiSwitchSettingReceiver;
 import io.appium.settings.receivers.AnimationSettingReceiver;
 import io.appium.settings.receivers.ClipboardReceiver;
 import io.appium.settings.receivers.DataConnectionSettingReceiver;
@@ -57,6 +58,7 @@ public class Settings extends Activity {
 
         // add by bruce.zhang
         receiverClasses.add(VibrateSettingReceiver.class);
+        receiverClasses.add(WifiSwitchSettingReceiver.class);
 
         registerSettingsReceivers(receiverClasses);
 
@@ -69,7 +71,7 @@ public class Settings extends Activity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Settings.this.finish();
+//                Settings.this.finish();
             }
         }, 1000);
     }

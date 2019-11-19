@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.Arrays;
@@ -31,27 +32,44 @@ public abstract class AbstractSettingReceiver extends BroadcastReceiver {
     private static final String TAG = AbstractSettingReceiver.class.getSimpleName();
 
     private static final String COMMAND = "setstatus";
+    private static final String COMMAND_KEY_DATA = "setData";
     private static final String COMMAND_ENABLE = "enable";
     private static final String COMMAND_DISABLE = "disable";
+
 
     // am broadcast -a io.appium.settings.[wifi|data_connection|animation] --es setstatus [enable|disable]
     @Override
     public void onReceive(Context context, Intent intent) {
-        String command = intent.getStringExtra(COMMAND);
-        List<String> supportedCommands = Arrays.asList(COMMAND_ENABLE, COMMAND_DISABLE);
-        if (!supportedCommands.contains(command)) {
-            Log.e(TAG, String.format("Cannot identify the command [%s]", command));
+        if(intent.getExtras() == null) {
             setResultCode(Activity.RESULT_CANCELED);
             return;
         }
-        boolean isSuccessful;
-        if (command.equals(COMMAND_ENABLE)) {
-            isSuccessful = getHandler(context).enable();
-        } else {
-            isSuccessful = getHandler(context).disable();
+        if(intent.getExtras().containsKey(COMMAND)) {
+            String command = intent.getStringExtra(COMMAND);
+            List<String> supportedCommands = Arrays.asList(COMMAND_ENABLE, COMMAND_DISABLE);
+            if (!supportedCommands.contains(command)) {
+                Log.e(TAG, String.format("Cannot identify the command [%s]", command));
+                setResultCode(Activity.RESULT_CANCELED);
+                return;
+            }
+            boolean isSuccessful;
+            if (command.equals(COMMAND_ENABLE)) {
+                isSuccessful = getHandler(context).enable();
+            } else {
+                isSuccessful = getHandler(context).disable();
+            }
+            setResultCode(isSuccessful ? Activity.RESULT_OK : Activity.RESULT_CANCELED);
+        } else if(intent.getExtras().containsKey(COMMAND_KEY_DATA)) {
+            String data = intent.getStringExtra(COMMAND_KEY_DATA);
+            if(TextUtils.isEmpty(data)) {
+                setResultCode(Activity.RESULT_CANCELED);
+                return;
+            }
+            boolean isSuccessful = getHandler(context).handleOtherData(context, intent, data);
+            setResultCode(isSuccessful ? Activity.RESULT_OK : Activity.RESULT_CANCELED);
         }
-        setResultCode(isSuccessful ? Activity.RESULT_OK : Activity.RESULT_CANCELED);
     }
 
     protected abstract AbstractSettingHandler getHandler(Context context);
+
 }

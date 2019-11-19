@@ -17,6 +17,7 @@
 package io.appium.settings.handlers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
@@ -61,4 +62,15 @@ public abstract class AbstractSettingHandler {
     protected abstract boolean setState(boolean state);
 
     protected abstract String getSettingDescription();
+
+    public final boolean handleOtherData(Context context, Intent intent, String data) {
+        if (!hasPermissions()) {
+            return false;
+        }
+        return _handleOtherData(context, intent, data);
+    }
+
+    public boolean _handleOtherData(Context context, Intent intent, String data) {
+        return false;
+    }
 }

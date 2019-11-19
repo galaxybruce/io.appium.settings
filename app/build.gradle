@@ -4,6 +4,11 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 28
@@ -29,6 +34,8 @@ android {
 
 dependencies {
     implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.thanosfisherman.wifiutils:wifiutils:1.4.0'
+
 }
 
 static def renameAPK(variant) {
