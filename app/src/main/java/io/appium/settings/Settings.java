@@ -18,15 +18,19 @@ package io.appium.settings;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.appium.settings.custom.activity.SwitchWifiActivity;
 import io.appium.settings.custom.receivers.VibrateSettingReceiver;
 import io.appium.settings.custom.receivers.WifiSwitchSettingReceiver;
 import io.appium.settings.receivers.AnimationSettingReceiver;
@@ -45,6 +49,8 @@ public class Settings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         Log.d(TAG, "Entering the app");
+
+        initView();
 
         LocationTracker.getInstance().start(this);
 
@@ -70,6 +76,7 @@ public class Settings extends Activity {
         Log.d(TAG, "Closing the app");
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
+            @Override
             public void run() {
 //                Settings.this.finish();
             }
@@ -88,5 +95,12 @@ public class Settings extends Activity {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void initView() {
+        findViewById(R.id.tv_switch_wifi).setOnClickListener(v -> {
+            Intent intent = new Intent(Settings.this, SwitchWifiActivity.class);
+            startActivity(intent);
+        });
     }
 }

@@ -125,6 +125,11 @@
         <receiver android:name=".custom.receivers.WifiSwitchSettingReceiver"
             android:exported="true"
             tools:ignore="ExportedReceiver" />
+
+        <activity
+            android:name=".custom.activity.SwitchWifiActivity"
+            android:label="@string/title_activity_switch_WIFI"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <!-- add by bruce.zhang end -->
 
     </application>
