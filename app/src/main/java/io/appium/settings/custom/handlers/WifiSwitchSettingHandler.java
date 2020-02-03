@@ -63,6 +63,6 @@ public class WifiSwitchSettingHandler extends AbstractSettingHandler {
 
     @Override
     protected String getSettingDescription() {
-        return "Vibrate";
+        return "wifi-switch";
     }
 }

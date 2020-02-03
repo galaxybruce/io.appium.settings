@@ -23,7 +23,7 @@ import io.appium.settings.receivers.AbstractSettingReceiver;
 import io.appium.settings.receivers.HasAction;
 
 /**
-* am broadcast -a io.appium.settings.switchWifi --es setstatus [enable|disable]
+* am broadcast -a io.appium.settings.switchWifi --es setData CJY_WIFI:cjy123456
 */
 public class WifiSwitchSettingReceiver extends AbstractSettingReceiver
         implements HasAction {

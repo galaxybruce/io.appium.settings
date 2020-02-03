@@ -62,9 +62,10 @@ public class Settings extends Activity {
         receiverClasses.add(LocationInfoReceiver.class);
         receiverClasses.add(ClipboardReceiver.class);
 
-        // add by bruce.zhang
+        // add by bruce.zhang start
         receiverClasses.add(VibrateSettingReceiver.class);
         receiverClasses.add(WifiSwitchSettingReceiver.class);
+        // add by bruce.zhang end
 
         registerSettingsReceivers(receiverClasses);
 
