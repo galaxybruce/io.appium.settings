@@ -25,9 +25,12 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
+
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-import android.util.Log;
+
+import io.appium.settings.custom.netty.SocketClient;
 
 public class ForegroundService extends Service {
     private static final String TAG = "APPIUM SERVICE";
@@ -62,6 +65,9 @@ public class ForegroundService extends Service {
             switch (intent.getAction()) {
                 case ACTION_START:
                     startForegroundService();
+
+                    // add by bruce.zhang
+                    startSocketClient();
                     break;
                 case ACTION_STOP:
                     stopForegroundService();
@@ -97,5 +103,13 @@ public class ForegroundService extends Service {
         Intent intent = new Intent(context, ForegroundService.class);
         intent.setAction(ForegroundService.ACTION_START);
         return intent;
+    }
+
+    SocketClient socketClient;
+    private void startSocketClient() {
+        if(socketClient == null) {
+            socketClient = new SocketClient(this, "192.168.1.4", 6656);
+        }
+        socketClient.start();
     }
 }

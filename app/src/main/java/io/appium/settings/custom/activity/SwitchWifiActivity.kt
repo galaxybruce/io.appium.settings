@@ -1,18 +1,11 @@
 package io.appium.settings.custom.activity
 
-import android.Manifest
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.PermissionUtils
 import com.thanosfisherman.wifiutils.WifiUtils
-import com.thanosfisherman.wifiutils.wifiConnect.ConnectionSuccessListener
 import io.appium.settings.R
-
 import kotlinx.android.synthetic.main.activity_switch_wifi.*
 
 class SwitchWifiActivity : BaseActivity() {
@@ -20,7 +13,7 @@ class SwitchWifiActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        tv_ok.setOnClickListener { view ->
+        tv_ok.setOnClickListener {
             requestPermission()
         }
     }
@@ -48,9 +41,7 @@ class SwitchWifiActivity : BaseActivity() {
 
     fun requestPermission() {
         PermissionUtils.permission(PermissionConstants.LOCATION)
-            .rationale { shouldRequest ->
-
-            }
+            .rationale {}
             .callback(object : PermissionUtils.FullCallback {
                 override fun onGranted(permissionsGranted: List<String>) {
                    startSwitchWifi()

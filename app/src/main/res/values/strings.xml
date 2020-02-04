@@ -9,6 +9,7 @@
 
     <!-- add by bruce.zhang start-->
     <string name="title_activity_switch_WIFI">切换WIFI</string>
+    <string name="title_activity_start_socket">启动socket</string>
 
     <!-- add by bruce.zhang end-->
 

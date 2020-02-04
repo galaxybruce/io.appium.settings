@@ -17,6 +17,7 @@ android {
         versionCode 20
         versionName "2.15.0"
         applicationId "io.appium.settings"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -46,6 +47,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     implementation 'com.blankj:utilcode:1.25.9'
+    implementation 'io.netty:netty-all:4.1.13.Final'
 }
 repositories {
     mavenCentral()

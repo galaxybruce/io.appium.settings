@@ -130,6 +130,12 @@
             android:name=".custom.activity.SwitchWifiActivity"
             android:label="@string/title_activity_switch_WIFI"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+
+        <activity
+            android:name=".custom.activity.ForegroundActivity"
+            android:label="@string/title_activity_start_socket"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <!-- add by bruce.zhang end -->
 
     </application>
