@@ -60,7 +60,7 @@ public class SocketClient {
                     channel.writeAndFlush(buildHelloMsg() + "\n");
 
                     channel.closeFuture().sync();
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }finally {
                     worker.shutdownGracefully();
