@@ -40,7 +40,9 @@ class ClientHandler extends SimpleChannelInboundHandler<String> {
         IHandler handler = handlerMap.get(protocol.getProtocolHeader());
         if(handler != null) {
             TextProtocol result = handler.handle(context, protocol.getProtocolBody());
-            ctx.channel().writeAndFlush(result.toString() + "\n");
+            if(result != null) {
+                ctx.channel().writeAndFlush(result.toString() + "\n");
+            }
         }
     }
 }

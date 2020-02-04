@@ -1,4 +1,4 @@
-package io.appium.settings.custom;
+package io.appium.settings.custom.utils;
 
 import android.annotation.SuppressLint;
 import android.os.Build;

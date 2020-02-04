@@ -14,7 +14,10 @@ import java.security.InvalidParameterException;
 
 public class TextProtocol {
     public static class Header {
-        // socket通信协议已 SMM_ 开头
+        // socket通信协议已 手机发送给pc已 MM_开头  pc发送给手机已 SMM_ 开头
+        public final static String MM_HELLO = "MM_HELLO";
+        public final static String MM_MOBILE_INFO = "MM_MOBILE_INFO";
+
         public final static String SMM_HELLO = "SMM_HELLO";
         public final static String SMM_MOBILE_INFO = "SMM_MOBILE_INFO";
 

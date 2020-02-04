@@ -1,7 +1,12 @@
 package io.appium.settings.custom.netty.handler;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
+import io.appium.settings.custom.utils.NetWorkUtils;
+import io.appium.settings.custom.utils.Utils;
+import io.appium.settings.custom.netty.DeviceInfo;
 import io.appium.settings.custom.netty.protocol.TextProtocol;
 
 /**
@@ -15,6 +20,18 @@ public class MobileInfoHandler implements IHandler {
 
     @Override
     public TextProtocol handle(Context context, String msg) {
-        return TextProtocol.newProtocol(TextProtocol.Header.SMM_MOBILE_INFO, "MobileInfoHandler");
+
+        DeviceInfo deviceInfo = new DeviceInfo();
+        deviceInfo.setSerialNo(Utils.getSerialNumber() );
+        deviceInfo.setIp(NetWorkUtils.getIP(context));
+        deviceInfo.setNetState(NetWorkUtils.isWifi(context) ? "WIFI" : "移动网络");
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(dm);
+        deviceInfo.setW(dm.widthPixels);
+        deviceInfo.setH(dm.heightPixels);
+
+        return TextProtocol.newProtocol(TextProtocol.Header.MM_MOBILE_INFO, deviceInfo.toString());
     }
 }

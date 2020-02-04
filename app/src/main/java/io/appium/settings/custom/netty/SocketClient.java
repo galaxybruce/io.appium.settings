@@ -2,7 +2,7 @@ package io.appium.settings.custom.netty;
 
 import android.content.Context;
 
-import io.appium.settings.custom.Utils;
+import io.appium.settings.custom.utils.Utils;
 import io.appium.settings.custom.netty.protocol.TextProtocol;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -78,7 +78,7 @@ public class SocketClient {
     }
 
     private String buildHelloMsg() {
-        TextProtocol protocol = TextProtocol.newProtocol(TextProtocol.Header.SMM_HELLO, Utils.getSerialNumber());
+        TextProtocol protocol = TextProtocol.newProtocol(TextProtocol.Header.MM_HELLO, Utils.getSerialNumber());
         return protocol.toString();
     }
 

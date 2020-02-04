@@ -30,6 +30,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.appium.settings.custom.activity.ForegroundActivity;
 import io.appium.settings.custom.activity.SwitchWifiActivity;
 import io.appium.settings.custom.receivers.VibrateSettingReceiver;
 import io.appium.settings.custom.receivers.WifiSwitchSettingReceiver;
@@ -101,6 +102,11 @@ public class Settings extends Activity {
     private void initView() {
         findViewById(R.id.tv_switch_wifi).setOnClickListener(v -> {
             Intent intent = new Intent(Settings.this, SwitchWifiActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.tv_start_socket).setOnClickListener(v -> {
+            Intent intent = new Intent(Settings.this, ForegroundActivity.class);
             startActivity(intent);
         });
     }
