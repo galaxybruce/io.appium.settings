@@ -1,6 +1,7 @@
 package io.appium.settings.custom.netty.handler;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
@@ -31,6 +32,12 @@ public class MobileInfoHandler implements IHandler {
         wm.getDefaultDisplay().getMetrics(dm);
         deviceInfo.setW(dm.widthPixels);
         deviceInfo.setH(dm.heightPixels);
+
+        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        // 系统音量
+        int systemVoiceMax = audioManager.getStreamMaxVolume(AudioManager.STREAM_SYSTEM);
+        int systemVoice = audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM);
+        deviceInfo.setVolume(systemVoice);
 
         return TextProtocol.newProtocol(TextProtocol.Header.MM_MOBILE_INFO, deviceInfo.toString());
     }

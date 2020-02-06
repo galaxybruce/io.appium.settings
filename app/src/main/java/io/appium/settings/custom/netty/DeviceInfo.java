@@ -24,6 +24,11 @@ public class DeviceInfo {
     private String ip;
     private String netState;
 
+    /**
+     * 音量
+     */
+    private int volume;
+
     public DeviceInfo() {
 
     }
@@ -100,6 +105,14 @@ public class DeviceInfo {
         this.netState = netState;
     }
 
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
     @Override
     public String toString() {
         return "{"
@@ -108,7 +121,8 @@ public class DeviceInfo {
                 + "\"w\":"          + w + ","
                 + "\"h\":"          + h + ","
                 + "\"ip\":\""       + ip + "\","
-                + "\"netState\":\"" + netState + "\""
+                + "\"netState\":\"" + netState + "\","
+                + "\"volume\":"     + volume + ","
                 + "}";
     }
 }
