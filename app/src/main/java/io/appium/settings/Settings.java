@@ -32,6 +32,7 @@ import java.util.List;
 
 import io.appium.settings.custom.activity.ForegroundActivity;
 import io.appium.settings.custom.activity.SwitchWifiActivity;
+import io.appium.settings.custom.netty.SocketServer;
 import io.appium.settings.custom.receivers.VibrateSettingReceiver;
 import io.appium.settings.custom.receivers.WifiSwitchSettingReceiver;
 import io.appium.settings.receivers.AnimationSettingReceiver;
@@ -50,6 +51,7 @@ public class Settings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         Log.d(TAG, "Entering the app");
+        SocketServer.setServerIp(getIntent());
 
         initView();
 

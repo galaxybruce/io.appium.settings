@@ -31,6 +31,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import io.appium.settings.custom.netty.SocketClient;
+import io.appium.settings.custom.netty.SocketServer;
 
 public class ForegroundService extends Service {
     private static final String TAG = "APPIUM SERVICE";
@@ -108,7 +109,7 @@ public class ForegroundService extends Service {
     SocketClient socketClient;
     private void startSocketClient() {
         if(socketClient == null) {
-            socketClient = new SocketClient(this, "192.168.1.4", 6656);
+            socketClient = new SocketClient(this, SocketServer.getServerIp(), SocketServer.PORT);
         }
         socketClient.start();
     }
