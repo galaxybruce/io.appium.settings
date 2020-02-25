@@ -26,7 +26,7 @@ public class SocketServer {
         if(!TextUtils.isEmpty(SERVER_IP)) {
             return SERVER_IP;
         } else {
-            return "10.61.14.105";
+            return "10.61.6.58";
         }
     }
 

@@ -19,7 +19,7 @@ public class Utils {
 
         String serial = "";
         try {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {//8.0+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {//8.0+
                 serial = Build.getSerial();
             } else {//8.0-
                 Class<?> c = Class.forName("android.os.SystemProperties");

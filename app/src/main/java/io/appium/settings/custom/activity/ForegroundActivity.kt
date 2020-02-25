@@ -14,9 +14,9 @@ class ForegroundActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         SocketServer.setServerIp(intent)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startService(ForegroundService.getForegroundServiceIntent(instance))
-        }
+//        }
 
         window.decorView.postDelayed(
             { finish() }
