@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.IBinder;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -108,9 +109,14 @@ public class ForegroundService extends Service {
 
     SocketClient socketClient;
     private void startSocketClient() {
-        if(socketClient == null) {
-            socketClient = new SocketClient(this, SocketServer.getServerIp(), SocketServer.PORT);
+        String ip = SocketServer.getServerIp();
+        Log.i("com.kidswant.ss-app", "ForegroundService.startSocketClient.ip : " + ip);
+
+        if(socketClient == null && !TextUtils.isEmpty(ip)) {
+            socketClient = new SocketClient(this, ip, SocketServer.PORT);
         }
-        socketClient.start();
+        if(socketClient != null) {
+            socketClient.start();
+        }
     }
 }

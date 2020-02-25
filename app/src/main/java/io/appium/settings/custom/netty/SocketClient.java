@@ -1,6 +1,7 @@
 package io.appium.settings.custom.netty;
 
 import android.content.Context;
+import android.util.Log;
 
 import io.appium.settings.custom.utils.Utils;
 import io.appium.settings.custom.netty.protocol.TextProtocol;
@@ -58,11 +59,15 @@ public class SocketClient {
 
                     // 发送设备号给服务端
                     channel.writeAndFlush(buildHelloMsg() + "\n");
+                    Log.i("com.kidswant.ss-app", "SocketClient connect success !!!" );
 
                     channel.closeFuture().sync();
                 } catch (Exception e) {
-                    e.printStackTrace();
-                }finally {
+                    Log.i("com.kidswant.ss-app", "SocketClient connect fail !!! " );
+                    Log.i("com.kidswant.ss-app", e.getLocalizedMessage());
+                    this.interrupt();
+                    clientThread = null;
+                } finally {
                     worker.shutdownGracefully();
                 }
             }
