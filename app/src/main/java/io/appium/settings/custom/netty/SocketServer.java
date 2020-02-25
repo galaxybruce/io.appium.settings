@@ -23,7 +23,11 @@ public class SocketServer {
     }
 
     public static String getServerIp() {
-        return SERVER_IP;
+        if(!TextUtils.isEmpty(SERVER_IP)) {
+            return SERVER_IP;
+        } else {
+            return "10.61.14.105";
+        }
     }
 
 }

@@ -32,7 +32,7 @@ public class SocketClient {
     }
 
     public void start() {
-        if (clientThread != null && clientThread.isAlive()) {
+        if (clientThread != null && clientThread.isAlive() && !clientThread.isInterrupted()) {
             return;
         }
         clientThread = new Thread() {
@@ -65,8 +65,7 @@ public class SocketClient {
                 } catch (Exception e) {
                     Log.i("com.kidswant.ss-app", "SocketClient connect fail !!! " );
                     Log.i("com.kidswant.ss-app", e.getLocalizedMessage());
-                    this.interrupt();
-                    clientThread = null;
+                    releaseThread();
                 } finally {
                     worker.shutdownGracefully();
                 }
@@ -75,11 +74,12 @@ public class SocketClient {
         clientThread.start();
     }
 
-    public void stop() {
+    public void releaseThread() {
         if (clientThread == null) {
             throw new IllegalStateException("Socket client is not running");
         }
         clientThread.interrupt();
+        clientThread = null;
     }
 
     private String buildHelloMsg() {
